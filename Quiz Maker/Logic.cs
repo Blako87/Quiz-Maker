@@ -8,13 +8,13 @@ namespace Quiz_Maker
 {
     internal class Logic
     {
-        public static List<Question> GetDefaultQuestions(string userQuestions,List<string>userAnswers,List<int>userCorrectAnswer)
+        public static List<Question> GetDefaultQuestions()
         {
             List<Question> defaultQuestions = new List<Question>();
             Question question1 = new Question();
             question1.Text = "What is the Capital of Austria?";
             question1.Answers = new List<string> { "Wiena", "berlin", "Paris", "Madrid" };
-            question1.CorrectAnswersIndizes = new List<int> {0 };
+            question1.CorrectAnswersIndizes = new List<int> { 0 };
             defaultQuestions.Add(question1);
             // second object
             Question question2 = new Question();
@@ -34,26 +34,20 @@ namespace Quiz_Maker
             question4.Answers = new List<string> { "Wiena", "berlin", "Paris", "Madrid" };
             question4.CorrectAnswersIndizes = new List<int> { 3 };
             defaultQuestions.Add(question4);
-            //five-th Object user input
-            Question userInputStuff = new Question();
-            userInputStuff.Text = userQuestions;
-            userInputStuff.Answers = userAnswers;
-            userInputStuff.CorrectAnswersIndizes = userCorrectAnswer;
-            defaultQuestions.Add(userInputStuff);
             return defaultQuestions;
         }
-        public static List<Question> GetUserQuestions(string questions,string answers,int correctAnswerIndizes)
+        public static List<Question> GetUserQuestions(string questions, List<string> answers, List<int> correctAnswerIndizes)
         {
             List<Question> userQuestion = new List<Question>();
             Question userQuestion1 = new Question
             {
                 Text = questions,
-                Answers = new List<string> {(answers) },
-                CorrectAnswersIndizes = new List<int>{(correctAnswerIndizes)}
+                Answers = answers,
+                CorrectAnswersIndizes = correctAnswerIndizes
             };
             userQuestion.Add(userQuestion1);
             return userQuestion;
         }
     }
-    
+
 }

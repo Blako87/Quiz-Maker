@@ -10,18 +10,46 @@ namespace Quiz_Maker
     {
         static void Main(string[] args)
         {
+            const string PLAYGAME = "G";
+            const string ADDQUESTIONS = "Q";
+            const string EXIT = "S";
+            Random rndQiuz = new Random();
+
+            List<Question> quizQuestions = new List<Question>();
+            quizQuestions.AddRange(Logic.GetDefaultQuestions());
             Ui.UserGretings("Welcome to Capital Qiuz Game!! ");
-            Ui.UserGameChoice();
-            string userQuestionsInput = Ui.UserQuestions();
-            List<string> userAnswersInput = new List<string> { (Ui.UserAnswers()) };
-            List<int> userCorrectAnswerInput = new List<int> { (Ui.UserCorrectAnswer()) };
-            List<Question> qiuzQuestions = Logic.GetDefaultQuestions(userQuestionsInput, userAnswersInput, userCorrectAnswerInput);
-            Console.Clear();
-            Console.WriteLine(qiuzQuestions[4].Text);
-            for (int i = 0; i < qiuzQuestions[4].Answers.Count; i++)
+            string userChoice = Ui.UserGameChoice();
+            if (userChoice == PLAYGAME)
             {
-                Console.WriteLine(qiuzQuestions[4].Answers[i]);
+
+
+                int indexQuestion = rndQiuz.Next(quizQuestions.Count);
+                Question question = quizQuestions[indexQuestion];
+                Ui.MessageToUser($"frage { + 1}: {question.Text}");
+                for (int i = 0; i < question.Answers.Count; i++)
+                {
+                    Console.WriteLine($"{i}: {question.Answers[i]}");
+                }
+
             }
+            if (userChoice == ADDQUESTIONS)
+            {
+
+            }
+            if (userChoice == EXIT)
+            {
+
+            }
+
+
+
+
+
+
+
+
+
+
 
         }
     }

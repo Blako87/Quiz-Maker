@@ -53,18 +53,19 @@ namespace Quiz_Maker
             string userInputQuestions = Console.ReadLine();
             return userInputQuestions;
         }
-        public static string UserAnswers()
+        public static List<string> UserAnswers()
         {
+            List<string> userInputAnswers = new List<string>();
             MessageToUser("Please enter below your Answers!");
             string userInput = Console.ReadLine();
             string userInputJoined = string.Join(",", userInput);
             TextInfo answers = CultureInfo.CurrentCulture.TextInfo;
-            string userInputAnswers = answers.ToTitleCase(userInputJoined);
+            userInputAnswers.Add ( answers.ToTitleCase(userInputJoined));
             return userInputAnswers;
         }
-        public static int UserCorrectAnswer()
+        public static List<int> UserCorrectAnswer()
         {
-            
+            List<int> userCorrectAnswer = new List<int>();
             bool userAnswer = false;
             int userIndexNumber = 0;
             while (!userAnswer)
@@ -81,7 +82,46 @@ namespace Quiz_Maker
                     continue;
                 }
             }
-            return userIndexNumber;
+            userCorrectAnswer.Add(userIndexNumber);
+            return userCorrectAnswer;
+        }
+        public static int UserTotalInputQuestions()
+        {
+            bool userRightInput = false;
+            int userInputNumber = 0;
+            while (!userRightInput)
+            {
+                string userInput = Console.ReadLine();
+                if (int.TryParse(userInput,out userInputNumber))
+                {
+                    userRightInput = true;
+                }
+                else
+                {
+                    MessageToUser("Invalid input!! put one number inside!");
+                }
+            }
+            return userInputNumber;
+
+        }
+        public static int UserInGameCorrectAnswer()
+        {
+            bool userRightInput = false;
+            int userInputNumber = 0;
+            while (!userRightInput)
+            {
+                MessageToUser("please enter below the correct Answers but as number starting counting from (Zero = 0,1,2,3)!!");
+                string userInput = Console.ReadLine();
+                if (int.TryParse(userInput, out userInputNumber))
+                {
+                    userRightInput = true;
+                }
+                else
+                {
+                    MessageToUser("Invalid input!! put one number inside!");
+                }
+            }
+            return userInputNumber;
         }
     }
 }

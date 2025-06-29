@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Quiz_Maker
 {
-    internal class Constants
+    public class Constants
     {
+        public const string PLAYGAME = "G";
+        public const string ADDQUESTIONS = "Q";
+        public const string EXIT = "S";
+        public const int MAXPOINTS = 100;
+        public const int MAXQUESTIONS = 6;
     }
 }

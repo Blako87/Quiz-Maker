@@ -21,23 +21,5 @@ namespace Quiz_Maker
 
         }
     }
-    public static class QuestionSerializer
-    {
-        public static void Save(List<Question> questions, string path)
-        {
-            var serializer = new XmlSerializer(typeof(List<Question>));
-            var file = File.Create(path);
-            serializer.Serialize(file, questions);
-        }
-        public static List<Question> Load(string path)
-        {
-            if (!File.Exists(path))
-            {
-                return new List<Question> { new Question() };
-            }
-            var serializer = new XmlSerializer(typeof(List<Question>));
-            var file = File.OpenRead(path);
-            return serializer.Deserialize(file) as List<Question>;
-        }
-    }
+            
 }

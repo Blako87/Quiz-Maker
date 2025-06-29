@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +49,20 @@ namespace Quiz_Maker
             };
             userQuestion.Add(userQuestion1);
             return userQuestion;
+        }
+        public static int AnswerValidation(Question question,int answer,int points)
+        {
+            
+            if (question.CorrectAnswersIndizes.Contains(answer))
+            {
+                Ui.MessageToUser("Right Answer ");
+            }
+            else
+            {
+                Ui.MessageToUser("Wrong Answer");
+                points += 10;
+            }
+            return points;
         }
     }
 

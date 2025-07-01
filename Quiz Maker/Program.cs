@@ -12,7 +12,7 @@ namespace Quiz_Maker
     {
         static void Main(string[] args)
         {
-            var path = @"C:\Users\blakk\Desktop\Try\QuestionList.txt";
+            var path = Constants.PATH;
             List<Question> existingUserQuestions = QuestionSerializer.Load(path);
             Random rndQiuz = new Random();
             
@@ -23,7 +23,7 @@ namespace Quiz_Maker
             
             newQuestions.AddRange(existingUserQuestions);
             quizQuestions.AddRange(newQuestions);
-            Console.WriteLine(quizQuestions.Count);
+            
 
             Ui.UserGretings("Welcome to Capital Qiuz Game!! ");
 
@@ -31,7 +31,7 @@ namespace Quiz_Maker
             while (gameRunning)
             {
                 string userChoice = Ui.UserGameChoice();
-                if (userChoice == Constants.PLAYGAME)
+                if (userChoice == Constants.PLAY_GAME)
                 {
                     int points = 0;
                     int score = 0;
@@ -43,14 +43,11 @@ namespace Quiz_Maker
                         Question question = questionsForGame[indexQuestion];
                         Console.Clear();
                         Ui.MessageToUser($"Question {+1}: {question.Text}");
-                        for (int i = 0; i < question.Answers.Count; i++)
-                        {
-                            Console.WriteLine($"{i}: {question.Answers[i]}");
-                        }
+                        Ui.GameAnswers(question);
                         Ui.MessageToUser("your Answer below (in numbers):");
                         int inputAnswer = Ui.UserInGameCorrectAnswer();
                         Logic.AnswerValidation(question, inputAnswer, points);
-                        score = Constants.MAXPOINTS - points;
+                        score = Constants.MAX_POINTS - points;
                         questionsForGame.RemoveAt(indexQuestion);
                         Ui.MessageToUser("For next Question just tap one key on keyboard");
                         Console.WriteLine($"remeining questions {questionsForGame.Count}");
@@ -61,7 +58,7 @@ namespace Quiz_Maker
 
 
                 }
-                if (userChoice == Constants.ADDQUESTIONS)
+                if (userChoice == Constants.ADD_QUESTIONS)
                 {
                     Ui.MessageToUser("input below how many questions you want to add for Game(Max 6 Questions");
                     int userTotalChoiceInputs = Ui.UserTotalInputQuestions();
@@ -71,7 +68,7 @@ namespace Quiz_Maker
                     while (inputs >= 1)
                     {
 
-                        if (inputs == Constants.MAXQUESTIONS)
+                        if (inputs == Constants.MAX_QUESTIONS)
                         {
                             break;
                         }

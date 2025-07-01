@@ -19,7 +19,7 @@ namespace Quiz_Maker
         }
         public static string UserGameChoice()
         {
-            MessageToUser("please take your choice betwen play Game(G) or Add Question(Q)and for Quit(S)");
+            MessageToUser($"please take your choice betwen play Game({Constants.PLAY_GAME}) or Add Question({Constants.ADD_QUESTIONS})and for Quit({Constants.EXIT})");
             string userGameChoice = Console.ReadLine().ToUpper();
             bool containsNumber = userGameChoice.Any(char.IsDigit);
             bool userInput = false;
@@ -122,6 +122,14 @@ namespace Quiz_Maker
                 }
             }
             return userInputNumber;
+        }
+        public static void GameAnswers(Question question)
+        {
+            for (int i = 0; i < question.Answers.Count; i++)
+            {
+                Console.WriteLine($"{i}: {question.Answers[i]}");
+            }
+            
         }
     }
 }

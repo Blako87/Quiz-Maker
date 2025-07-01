@@ -25,7 +25,7 @@ namespace Quiz_Maker
             quizQuestions.AddRange(newQuestions);
 
             Ui.UserGretings("Welcome to Capital Qiuz Game!! ");
-
+            
             bool gameRunning = true;
             while (gameRunning)
             {

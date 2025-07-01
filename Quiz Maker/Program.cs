@@ -15,15 +15,14 @@ namespace Quiz_Maker
             var path = Constants.PATH;
             List<Question> existingUserQuestions = QuestionSerializer.Load(path);
             Random rndQiuz = new Random();
-            
+
             List<Question> newQuestions = new List<Question>();
-            
+
             List<Question> quizQuestions = new List<Question>();
             quizQuestions.AddRange(Logic.GetDefaultQuestions());
-            
+
             newQuestions.AddRange(existingUserQuestions);
             quizQuestions.AddRange(newQuestions);
-            
 
             Ui.UserGretings("Welcome to Capital Qiuz Game!! ");
 
@@ -63,7 +62,7 @@ namespace Quiz_Maker
                     Ui.MessageToUser("input below how many questions you want to add for Game(Max 6 Questions");
                     int userTotalChoiceInputs = Ui.UserTotalInputQuestions();
                     int inputs = userTotalChoiceInputs;
-                   
+
 
                     while (inputs >= 1)
                     {
@@ -81,7 +80,7 @@ namespace Quiz_Maker
 
 
                     }
-                    
+
                     existingUserQuestions.AddRange(newQuestions);
                     QuestionSerializer.Save(existingUserQuestions, path);
                     Ui.MessageToUser("Your Questions are succesfuly implemented!");

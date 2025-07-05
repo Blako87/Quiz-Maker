@@ -124,7 +124,7 @@ namespace Quiz_Maker
             }
             return userInputNumber;
         }
-        public static void GameAnswers(Question question)
+        public static void DisplayGameAnswers(Question question)
         {
             for (int i = 0; i < question.Answers.Count; i++)
             {

@@ -12,20 +12,15 @@ namespace Quiz_Maker
     {
         static void Main(string[] args)
         {
-            var path = Constants.PATH;
-            List<Question> existingUserQuestions = QuestionSerializer.Load(path);
+
+            List<Question> existingUserQuestions = QuestionSerializer.Load(Constants.PATH);
             Random rndQiuz = new Random();
-
             List<Question> newQuestions = new List<Question>();
-
             List<Question> quizQuestions = new List<Question>();
             quizQuestions.AddRange(Logic.GetDefaultQuestions());
-
             newQuestions.AddRange(existingUserQuestions);
             quizQuestions.AddRange(newQuestions);
-
             Ui.UserGretings("Welcome to Capital Qiuz Game!! ");
-            
             bool gameRunning = true;
             while (gameRunning)
             {
@@ -37,12 +32,11 @@ namespace Quiz_Maker
                     List<Question> questionsForGame = new List<Question>(quizQuestions);
                     while (questionsForGame.Count > 0)
                     {
-
                         int indexQuestion = rndQiuz.Next(questionsForGame.Count);
                         Question question = questionsForGame[indexQuestion];
                         Console.Clear();
                         Ui.MessageToUser($"Question {+1}: {question.Text}");
-                        Ui.GameAnswers(question);
+                        Ui.DisplayGameAnswers(question);
                         Ui.MessageToUser("your Answer below (in numbers):");
                         int inputAnswer = Ui.UserInGameCorrectAnswer();
                         Logic.AnswerValidation(question, inputAnswer, points);
@@ -54,8 +48,6 @@ namespace Quiz_Maker
                     }
                     Ui.MessageToUser($"Game Over! Your Score {score}  from {quizQuestions.Count} Total earned points!");
 
-
-
                 }
                 if (userChoice == Constants.ADD_QUESTIONS)
                 {
@@ -63,10 +55,8 @@ namespace Quiz_Maker
                     int userTotalChoiceInputs = Ui.UserTotalInputQuestions();
                     int inputs = userTotalChoiceInputs;
 
-
                     while (inputs >= 1)
                     {
-
                         if (inputs == Constants.MAX_QUESTIONS)
                         {
                             break;
@@ -75,14 +65,11 @@ namespace Quiz_Maker
                         List<string> answers = Ui.UserAnswers();
                         List<int> correctAnswer = Ui.UserCorrectAnswer();
                         inputs -= 1;
-
                         newQuestions.AddRange(Logic.GetUserQuestions(questionsText, answers, correctAnswer));
-
-
                     }
 
                     existingUserQuestions.AddRange(newQuestions);
-                    QuestionSerializer.Save(existingUserQuestions, path);
+                    QuestionSerializer.Save(existingUserQuestions, Constants.PATH);
                     Ui.MessageToUser("Your Questions are succesfuly implemented!");
                     continue;
 
@@ -94,19 +81,7 @@ namespace Quiz_Maker
 
                 }
 
-
             }
-
-
-
-
-
-
-
-
-
-
-
 
         }
     }

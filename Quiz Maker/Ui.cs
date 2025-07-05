@@ -20,31 +20,32 @@ namespace Quiz_Maker
         public static string UserGameChoice()
         {
             MessageToUser($"please take your choice betwen play Game({Constants.PLAY_GAME}) or Add Question({Constants.ADD_QUESTIONS})and for Quit({Constants.EXIT})");
-            string userGameChoice = Console.ReadLine().ToUpper();
-            bool containsNumber = userGameChoice.Any(char.IsDigit);
-            bool userInput = false;
-            while (!userInput)
+            
+           
+            while (true)
             {
+                string userGameChoice = Console.ReadLine().ToUpper();
+                bool containsNumber = userGameChoice.Any(char.IsDigit);
                 if (string.IsNullOrWhiteSpace(userGameChoice))
                 {
-                    userInput = false;
+                   
                     MessageToUser("Please enter an valid Letter as mentioned above!!");
                     continue;
                 }
                 else if (containsNumber)
                 {
-                    userInput = false;
+                    
                     MessageToUser("Please enter an valid Letter as mentioned above not numbers!!");
                     continue;
                 }
                 else
                 {
-                    userInput = true;   
+                    return userGameChoice;
                 }
             }
 
 
-            return userGameChoice;
+           
         }
 
         public static string UserQuestions()

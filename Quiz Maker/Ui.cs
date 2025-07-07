@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
+using System.Linq;
+using System.Reflection;
 
 namespace Quiz_Maker
 {
     internal class Ui
     {
-        public static void UserGretings(string message)
+        public static void DisplayUserGretings(string message)
         {
             Console.WriteLine($"{message}");
         }
@@ -17,24 +16,23 @@ namespace Quiz_Maker
         {
             Console.WriteLine(messageToUser);
         }
-        public static string UserGameChoice()
+        public static string GetUserGameChoice()
         {
             MessageToUser($"please take your choice betwen play Game({Constants.PLAY_GAME}) or Add Question({Constants.ADD_QUESTIONS})and for Quit({Constants.EXIT})");
-            
-           
+
             while (true)
             {
                 string userGameChoice = Console.ReadLine().ToUpper();
                 bool containsNumber = userGameChoice.Any(char.IsDigit);
                 if (string.IsNullOrWhiteSpace(userGameChoice))
                 {
-                   
+
                     MessageToUser("Please enter an valid Letter as mentioned above!!");
                     continue;
                 }
                 else if (containsNumber)
                 {
-                    
+
                     MessageToUser("Please enter an valid Letter as mentioned above not numbers!!");
                     continue;
                 }
@@ -44,27 +42,25 @@ namespace Quiz_Maker
                 }
             }
 
-
-           
         }
 
-        public static string UserQuestions()
+        public static string GetUserQuestions()
         {
             MessageToUser("please enter below your Question!");
             string userInputQuestions = Console.ReadLine();
             return userInputQuestions;
         }
-        public static List<string> UserAnswers()
+        public static List<string> GetUserAnswers()
         {
             List<string> userInputAnswers = new List<string>();
             MessageToUser("Please enter below your Answers!");
             string userInput = Console.ReadLine();
             string userInputJoined = string.Join(",", userInput);
             TextInfo answers = CultureInfo.CurrentCulture.TextInfo;
-            userInputAnswers.Add ( answers.ToTitleCase(userInputJoined));
+            userInputAnswers.Add(answers.ToTitleCase(userInputJoined));
             return userInputAnswers;
         }
-        public static List<int> UserCorrectAnswer()
+        public static List<int> GetUserCorrectAnswer()
         {
             List<int> userCorrectAnswer = new List<int>();
             bool userAnswer = false;
@@ -86,14 +82,14 @@ namespace Quiz_Maker
             userCorrectAnswer.Add(userIndexNumber);
             return userCorrectAnswer;
         }
-        public static int UserTotalInputQuestions()
+        public static int GetUserTotalInputQuestions()
         {
             bool userRightInput = false;
             int userInputNumber = 0;
             while (!userRightInput)
             {
                 string userInput = Console.ReadLine();
-                if (int.TryParse(userInput,out userInputNumber))
+                if (int.TryParse(userInput, out userInputNumber))
                 {
                     userRightInput = true;
                 }
@@ -105,7 +101,7 @@ namespace Quiz_Maker
             return userInputNumber;
 
         }
-        public static int UserInGameCorrectAnswer()
+        public static int GetUserInGameCorrectAnswer()
         {
             bool userRightInput = false;
             int userInputNumber = 0;
@@ -124,13 +120,32 @@ namespace Quiz_Maker
             }
             return userInputNumber;
         }
-        public static void DisplayGameAnswers(Question question)
+        public static void DisplayGameAnswers(QuizCard question)
         {
             for (int i = 0; i < question.Answers.Count; i++)
             {
                 Console.WriteLine($"{i}: {question.Answers[i]}");
             }
-            
+
+        }
+        public static void ClearDisplay()
+        {
+            Console.Clear();
+        }
+        public static void GetUserPressedKey()
+        {
+            Console.ReadKey();
+        }
+        public static void DisplayCorrectAnswerValidation(QuizCard question, int answer)
+        {
+            if (question.CorrectAnswersIndizes.Contains(answer))
+            {
+                MessageToUser("Right Answer Gratulation!!");
+            }
+            else
+            {
+                MessageToUser("Wrong Answer!take your time!");
+            }
         }
     }
 }

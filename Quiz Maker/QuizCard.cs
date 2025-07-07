@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-
+﻿using System.Collections.Generic;
 namespace Quiz_Maker
 {
-    public class Question
+    public class QuizCard
     {
         public string Text { get; set; }
         public List<string> Answers { get; set; }

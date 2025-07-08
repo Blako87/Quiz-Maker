@@ -33,16 +33,15 @@ namespace Quiz_Maker
                         Ui.DisplayGameAnswers(question);
                         Ui.DisplayMessageToUser("your Answer below (in numbers):");
                         int inputAnswer = Ui.GetUserInGameCorrectAnswer();
-                        points = Logic.GetAnswerValidation(question, inputAnswer, points,Constants.REWARD_POINTS);
+                        points = Logic.GetAnswerValidation(question, inputAnswer, points, Constants.REWARD_POINTS);
                         Ui.DisplayCorrectAnswerValidation(question, inputAnswer);
                         questionsForGame.RemoveAt(indexQuestion);
                         score = Constants.MAX_POINTS - points;
-                        Console.WriteLine(points);
                         Ui.DisplayMessageToUser("For next Question just tap one key on keyboard");
                         Ui.GetUserPressedKey();
                         continue;
                     }
-                    Ui.DisplayMessageToUser($"Game Over! Your Score {score}  from {quizQuestions.Count} Total earned points!");
+                    Ui.DisplayMessageToUser($"Game Over! From {quizQuestions.Count} Questions!Your Score {score} Total earned points!");
 
                 }
                 if (userChoice == Constants.ADD_QUESTIONS)

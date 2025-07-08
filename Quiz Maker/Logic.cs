@@ -47,14 +47,11 @@ namespace Quiz_Maker
         public static int GetAnswerValidation(QuizCard question, int answer, int points, int rewardPoints)
         {
 
-            if (question.CorrectAnswersIndizes.Contains(answer))
-            {
-
-            }
-            else
+            if (!question.CorrectAnswersIndizes.Contains(answer))
             {
                 points += rewardPoints;
             }
+            
 
             return points;
         }

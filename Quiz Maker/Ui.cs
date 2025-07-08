@@ -12,13 +12,13 @@ namespace Quiz_Maker
         {
             Console.WriteLine($"{message}");
         }
-        public static void MessageToUser(string messageToUser)
+        public static void DisplayMessageToUser(string messageToUser)
         {
             Console.WriteLine(messageToUser);
         }
         public static string GetUserGameChoice()
         {
-            MessageToUser($"please take your choice betwen play Game({Constants.PLAY_GAME}) or Add Question({Constants.ADD_QUESTIONS})and for Quit({Constants.EXIT})");
+            DisplayMessageToUser($"please take your choice betwen play Game({Constants.PLAY_GAME}) or Add Question({Constants.ADD_QUESTIONS})and for Quit({Constants.EXIT})");
 
             while (true)
             {
@@ -27,13 +27,13 @@ namespace Quiz_Maker
                 if (string.IsNullOrWhiteSpace(userGameChoice))
                 {
 
-                    MessageToUser("Please enter an valid Letter as mentioned above!!");
+                    DisplayMessageToUser("Please enter an valid Letter as mentioned above!!");
                     continue;
                 }
                 else if (containsNumber)
                 {
 
-                    MessageToUser("Please enter an valid Letter as mentioned above not numbers!!");
+                    DisplayMessageToUser("Please enter an valid Letter as mentioned above not numbers!!");
                     continue;
                 }
                 else
@@ -46,14 +46,14 @@ namespace Quiz_Maker
 
         public static string GetUserQuestions()
         {
-            MessageToUser("please enter below your Question!");
+            DisplayMessageToUser("please enter below your Question!");
             string userInputQuestions = Console.ReadLine();
             return userInputQuestions;
         }
         public static List<string> GetUserAnswers()
         {
             List<string> userInputAnswers = new List<string>();
-            MessageToUser("Please enter below your Answers!");
+            DisplayMessageToUser("Please enter below your Answers!");
             string userInput = Console.ReadLine();
             string userInputJoined = string.Join(",", userInput);
             TextInfo answers = CultureInfo.CurrentCulture.TextInfo;
@@ -67,7 +67,7 @@ namespace Quiz_Maker
             int userIndexNumber = 0;
             while (!userAnswer)
             {
-                MessageToUser("please enter below the correct Answers but as number starting counting from (Zero = 0,1,2,3,4)!!");
+                DisplayMessageToUser("please enter below the correct Answers but as number starting counting from (Zero = 0,1,2,3,4)!!");
                 string userInputIndexAnswer = Console.ReadLine();
                 if (int.TryParse(userInputIndexAnswer, out userIndexNumber))
                 {
@@ -75,7 +75,7 @@ namespace Quiz_Maker
                 }
                 else
                 {
-                    MessageToUser(" Invalid Input!, Please try to input an Number!");
+                    DisplayMessageToUser(" Invalid Input!, Please try to input an Number!");
                     continue;
                 }
             }
@@ -95,7 +95,7 @@ namespace Quiz_Maker
                 }
                 else
                 {
-                    MessageToUser("Invalid input!! put one number inside!");
+                    DisplayMessageToUser("Invalid input!! put one number inside!");
                 }
             }
             return userInputNumber;
@@ -107,7 +107,7 @@ namespace Quiz_Maker
             int userInputNumber = 0;
             while (!userRightInput)
             {
-                MessageToUser("please enter below the correct Answers but as number starting counting from (Zero = 0,1,2,3)!!");
+                DisplayMessageToUser("please enter below the correct Answers but as number starting counting from (Zero = 0,1,2,3)!!");
                 string userInput = Console.ReadLine();
                 if (int.TryParse(userInput, out userInputNumber))
                 {
@@ -115,7 +115,7 @@ namespace Quiz_Maker
                 }
                 else
                 {
-                    MessageToUser("Invalid input!! put one number inside!");
+                    DisplayMessageToUser("Invalid input!! put one number inside!");
                 }
             }
             return userInputNumber;
@@ -140,11 +140,11 @@ namespace Quiz_Maker
         {
             if (question.CorrectAnswersIndizes.Contains(answer))
             {
-                MessageToUser("Right Answer Gratulation!!");
+                DisplayMessageToUser("Right Answer Gratulation!!");
             }
             else
             {
-                MessageToUser("Wrong Answer!take your time!");
+                DisplayMessageToUser("Wrong Answer!take your time!");
             }
         }
     }

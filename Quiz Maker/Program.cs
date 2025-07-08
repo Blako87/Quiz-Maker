@@ -29,25 +29,25 @@ namespace Quiz_Maker
                         int indexQuestion = rndQiuz.Next(questionsForGame.Count);
                         QuizCard question = questionsForGame[indexQuestion];
                         Ui.ClearDisplay();
-                        Ui.MessageToUser($"Question {+1}: {question.Text}");
+                        Ui.DisplayMessageToUser($"Question {+1}: {question.Text}");
                         Ui.DisplayGameAnswers(question);
-                        Ui.MessageToUser("your Answer below (in numbers):");
+                        Ui.DisplayMessageToUser("your Answer below (in numbers):");
                         int inputAnswer = Ui.GetUserInGameCorrectAnswer();
                         points = Logic.GetAnswerValidation(question, inputAnswer, points,Constants.REWARD_POINTS);
                         Ui.DisplayCorrectAnswerValidation(question, inputAnswer);
                         questionsForGame.RemoveAt(indexQuestion);
                         score = Constants.MAX_POINTS - points;
                         Console.WriteLine(points);
-                        Ui.MessageToUser("For next Question just tap one key on keyboard");
+                        Ui.DisplayMessageToUser("For next Question just tap one key on keyboard");
                         Ui.GetUserPressedKey();
                         continue;
                     }
-                    Ui.MessageToUser($"Game Over! Your Score {score}  from {quizQuestions.Count} Total earned points!");
+                    Ui.DisplayMessageToUser($"Game Over! Your Score {score}  from {quizQuestions.Count} Total earned points!");
 
                 }
                 if (userChoice == Constants.ADD_QUESTIONS)
                 {
-                    Ui.MessageToUser("input below how many questions you want to add for Game(Max 6 Questions");
+                    Ui.DisplayMessageToUser("input below how many questions you want to add for Game(Max 6 Questions");
                     int userTotalChoiceInputs = Ui.GetUserTotalInputQuestions();
                     int inputs = userTotalChoiceInputs;
 
@@ -66,13 +66,13 @@ namespace Quiz_Maker
 
                     existingUserQuestions.AddRange(newQuestions);
                     Logic.SaveUserInputQuestions(existingUserQuestions);
-                    Ui.MessageToUser("Your Questions are succesfuly implemented!");
+                    Ui.DisplayMessageToUser("Your Questions are succesfuly implemented!");
                     continue;
 
                 }
                 if (userChoice == Constants.EXIT)
                 {
-                    Ui.MessageToUser("Bye see ya next time!");
+                    Ui.DisplayMessageToUser("Bye see ya next time!");
                     gameRunning = false;
 
                 }
